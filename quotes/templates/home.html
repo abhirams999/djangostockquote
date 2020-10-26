@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+Stock Portfolio
+{% endblock %}
+{% block content %}
+{% if ticker %}
+	{{ ticker }}
+{% endif %}
+{% if api %}
+	{% if api == "error" %}
+		Stock Quote for the entered value is not available..
+	{% else %}
+		<h1> {{ api.companyName }} </h1>
+		{% for i,v in api.items %}
+			{% if i in lst %}
+				<p> {{ i }} : {{ v }} </p>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+{% endif %}
+
+{% endblock %}
